@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>50 Años - Invitación Especial</title>
-    <link rel="stylesheet" href="css.css">
     <style>
         * {
             margin: 0;
@@ -16,7 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: black;
             color: white;
-            overflow: hidden; /* Evita el scroll general, cada pantalla es un slide */
+            overflow: hidden;
             height: 100vh;
             width: 100vw;
         }
@@ -24,9 +23,9 @@
         .container {
             height: 100vh;
             width: 100vw;
-            overflow-y: scroll; /* Scroll vertical para las pantallas */
-            scroll-snap-type: y mandatory; /* Efecto de snap */
-            -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            -webkit-overflow-scrolling: touch;
             scroll-behavior: smooth;
         }
 
@@ -83,7 +82,6 @@
             margin-right: 10px;
             border: 2px solid gold;
         }
-        /* EJEMPLOS DE FOTOS - REEMPLAZA CON LAS TUYAS */
         .photo1 { background-image: url('https://placehold.co/600x800/333/white?text=Foto+Niño'); }
         .photo2 { background-image: url('https://placehold.co/600x800/444/white?text=Foto+Joven'); }
         .photo3 { background-image: url('https://placehold.co/600x800/555/white?text=Foto+Adulto'); }
@@ -125,36 +123,67 @@
             background: rgba(255,215,0,0.1);
             backdrop-filter: blur(5px);
             border-radius: 30px;
-            padding: 40px 30px;
+            padding: 30px 25px;
             border: 1px solid gold;
-            width: 90%;
-            max-width: 400px;
+            width: 95%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         .event-details h2 {
             color: gold;
             font-size: 2rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        .detail-item {
-            font-size: 1.4rem;
+        
+        /* Estilos para el contador */
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
             margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .time {
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            padding: 10px;
+            min-width: 70px;
+            border: 1px solid gold;
+        }
+        .time span {
+            font-size: 2rem;
+            font-weight: bold;
+            color: gold;
+            display: block;
+        }
+        .time p {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-top: 5px;
+        }
+        
+        .detail-item {
+            font-size: 1.3rem;
+            margin: 15px 0;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            word-break: break-word;
         }
         .detail-item span {
             color: gold;
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
         .whatsapp-btn {
             background-color: #25D366;
             color: white;
             border: none;
-            padding: 18px 40px;
-            font-size: 1.5rem;
+            padding: 15px 30px;
+            font-size: 1.3rem;
             border-radius: 60px;
-            margin-top: 30px;
+            margin-top: 20px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -186,19 +215,18 @@
             user-select: none;
         }
 
-        /* Animación para que el contenedor de confeti esté por encima */
+        /* Confeti */
         #confetti-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Para que no bloquee los clics */
+            pointer-events: none;
             z-index: 1000;
             display: none;
         }
 
-        /* Ajustes generales */
         .emoji-big {
             font-size: 3rem;
             margin-bottom: 10px;
@@ -207,10 +235,7 @@
 </head>
 <body>
 
-    <!-- Botón flotante para controlar música -->
     <div class="music-control" id="musicToggle">🔇 Activar Música</div>
-
-    <!-- Canvas para el confeti -->
     <canvas id="confetti-canvas"></canvas>
 
     <div class="container" id="scrollContainer">
@@ -221,7 +246,7 @@
             </div>
         </section>
 
-        <!-- PANTALLA 2: Fotos (Reemplaza las URLs con tus imágenes) -->
+        <!-- PANTALLA 2: Fotos -->
         <section class="slide" id="photos">
             <h2 style="color: gold; margin-bottom: 20px;">Su Historia</h2>
             <div class="photo-gallery">
@@ -237,104 +262,96 @@
         <section class="slide" id="revelation">
             <div class="revelation-text">
                 <span class="small">Hoy celebramos 50 años de vida de...</span>
-                <span class="big-name" id="nombrePapa">DANIEL ANGELES DE LA ROSA</span> <!-- CAMBIA ESTE NOMBRE -->
+                <span class="big-name" id="nombrePapa">DANIEL ANGELES DE LA ROSA</span>
                 <div class="emoji-big">🎉🎂🥳</div>
             </div>
         </section>
 
         <!-- PANTALLA 4: Datos del Evento y Botón -->
         <section class="slide" id="evento">
-            <h2>🎉 Cuenta regresiva para la fiesta 🎉</h2>
-
-<div id="countdown">
-  <div class="time">
-    <span id="days"></span>
-    <p>Días</p>
-  </div>
-  <div class="time">
-    <span id="hours"></span>
-    <p>Horas</p>
-  </div>
-  <div class="time">
-    <span id="minutes"></span>
-    <p>Minutos</p>
-  </div>
-  <div class="time">
-    <span id="seconds"></span>
-    <p>Segundos</p>
-  </div>
-</div>
             <div class="event-details">
                 <h2>¡Te esperamos!</h2>
-                <div class="detail-item"><span>📅</span> 25 de Diciembre, 2025</div> <!-- CAMBIA FECHA -->
-                <div class="detail-item"><span>⏰</span> 7:00 PM</div> <!-- CAMBIA HORA -->
-                <div class="detail-item"><span>📍</span> Salón Fiesta, Calle Siempre Viva 123</div> <!-- CAMBIA LUGAR -->
+                
+                <!-- CONTADOR REGRESIVO (AHORA DENTRO DEL CUADRO) -->
+                <h3 style="color: gold; font-size: 1.3rem; margin-bottom: 10px;">⏳ Faltan:</h3>
+                <div id="countdown">
+                    <div class="time">
+                        <span id="days">0</span>
+                        <p>Días</p>
+                    </div>
+                    <div class="time">
+                        <span id="hours">0</span>
+                        <p>Horas</p>
+                    </div>
+                    <div class="time">
+                        <span id="minutes">0</span>
+                        <p>Minutos</p>
+                    </div>
+                    <div class="time">
+                        <span id="seconds">0</span>
+                        <p>Segundos</p>
+                    </div>
+                </div>
+
+                <!-- DATOS DEL EVENTO -->
+                <div class="detail-item"><span>📅</span> <span id="fechaEvento">15 de Mayo, 2026</span></div>
+                <div class="detail-item"><span>⏰</span> <span id="horaEvento">7:00 PM</span></div>
+                <div class="detail-item"><span>📍</span> <span id="lugarEvento">Salón Fiesta, Calle De Las Sirenas 123</span></div>
+                
+                <!-- BOTÓN WHATSAPP -->
                 <a href="#" id="whatsappLink" class="whatsapp-btn" target="_blank">
                     <span>📲</span> Confirmar Asistencia
                 </a>
-                <p style="margin-top: 20px; font-size: 1rem; color: #ccc;">¡Te esperamos para celebrar!</p>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #ccc;">¡Te esperamos para celebrar!</p>
             </div>
         </section>
     </div>
 
-    <!-- Reproductor de audio oculto -->
+    <!-- Audio -->
     <audio id="backgroundMusic" loop preload="auto">
-        <!-- Pon aquí la URL de una canción. Como ejemplo, usamos un tono silencioso.
-             Lo ideal es que subas un archivo .mp3 a un servidor o uses uno de tu preferencia.
-             Por ahora, lo dejamos con un sonido de placeholder silencioso. -->
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-        <!-- Si no carga, pon un mensaje -->
         Tu navegador no soporta audio.
     </audio>
 
     <script>
-        // --- Configuración personalizada (¡CÁMBIALO!) ---
-        const NOMBRE_PAPA = "DANIEL ANGELES DE LA ROSA"; // <--- NOMBRE DE TU PAPÁ
-        const FECHA_EVENTO = "15 de Mayo, 2026"; // <--- FECHA
-        const HORA_EVENTO = "7:00 PM"; // <--- HORA
-        const LUGAR_EVENTO = "Salón Fiesta, Calle De Las Sirenas 123"; // <--- LUGAR
+        // --- CONFIGURACIÓN ---
+        const NOMBRE_PAPA = "DANIEL ANGELES DE LA ROSA";
+        const FECHA_EVENTO = "15 de Mayo, 2026";
+        const HORA_EVENTO = "7:00 PM";
+        const LUGAR_EVENTO = "Salón Fiesta, Calle De Las Sirenas 123";
         const NUMERO_WHATSAPP = "525519285146"; 
         const MENSAJE_WHATSAPP = "¡Hola! Confirmo mi asistencia a los 50 años de " + NOMBRE_PAPA + ". ¡Nos vemos!";
 
-        // --- Aplicar los datos al HTML ---
+        // Aplicar datos
         document.getElementById('nombrePapa').textContent = NOMBRE_PAPA;
-        
-        // Actualizar los detalles del evento (usando los spans)
-        const detailItems = document.querySelectorAll('.detail-item');
-        // Fecha
-        if (detailItems[0]) detailItems[0].innerHTML = `<span>📅</span> ${FECHA_EVENTO}`;
-        // Hora
-        if (detailItems[1]) detailItems[1].innerHTML = `<span>⏰</span> ${HORA_EVENTO}`;
-        // Lugar
-        if (detailItems[2]) detailItems[2].innerHTML = `<span>📍</span> ${LUGAR_EVENTO}`;
+        document.getElementById('fechaEvento').textContent = FECHA_EVENTO;
+        document.getElementById('horaEvento').textContent = HORA_EVENTO;
+        document.getElementById('lugarEvento').textContent = LUGAR_EVENTO;
 
-        // Actualizar el link de WhatsApp
+        // WhatsApp
         const whatsappLink = document.getElementById('whatsappLink');
         const mensajeCodificado = encodeURIComponent(MENSAJE_WHATSAPP);
         whatsappLink.href = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensajeCodificado}`;
 
-        // --- Lógica de Música (requiere interacción del usuario) ---
+        // --- MÚSICA ---
         const music = document.getElementById('backgroundMusic');
         const musicToggle = document.getElementById('musicToggle');
         let isMusicPlaying = false;
 
-        music.volume = 0.3; // Volumen suave
+        music.volume = 0.3;
 
         musicToggle.addEventListener('click', () => {
             if (isMusicPlaying) {
                 music.pause();
                 musicToggle.innerHTML = '🔇 Activar Música';
             } else {
-                music.play().catch(e => {
-                    console.log("Error al reproducir música:", e);
-                    alert("Haz clic en 'Activar Música' después de interactuar con la página.");
-                });
+                music.play().catch(e => console.log("Esperando interacción..."));
                 musicToggle.innerHTML = '🔊 Silenciar Música';
             }
             isMusicPlaying = !isMusicPlaying;
         });
 
-        // --- Confeti (al llegar a la última pantalla) ---
+        // --- CONFETI ---
         const confettiCanvas = document.getElementById('confetti-canvas');
         const ctx = confettiCanvas.getContext('2d');
         let animationId = null;
@@ -370,11 +387,9 @@
                 ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Movimiento
                 p.x += p.speedX;
                 p.y += p.speedY;
 
-                // Reset si sale de la pantalla
                 if (p.y > height + 20) {
                     particles[index] = {
                         x: Math.random() * width,
@@ -386,7 +401,6 @@
                     };
                 }
             });
-
             animationId = requestAnimationFrame(drawConfetti);
         }
 
@@ -410,12 +424,11 @@
             ctx.clearRect(0, 0, width, height);
         }
 
-        // Detectar en qué slide estamos (usando Intersection Observer)
+        // Detectar pantalla activa
         const slides = document.querySelectorAll('.slide');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Si la pantalla visible es la del evento (última), activar confeti
                     if (entry.target.id === 'evento') {
                         startConfetti();
                     } else {
@@ -423,40 +436,32 @@
                     }
                 }
             });
-        }, { threshold: 0.5 }); // Cuando al menos el 50% de la pantalla es visible
+        }, { threshold: 0.5 });
 
         slides.forEach(slide => observer.observe(slide));
-
-        // Precaución: Detener confeti al inicio
         stopConfetti();
 
-        // Forzar el scroll a la primera pantalla por si acaso
         window.onload = () => {
             document.getElementById('intro').scrollIntoView({ behavior: 'instant' });
         };
 
+        // --- CONTADOR REGRESIVO ---
+        const birthday = new Date("May 15, 2026 19:00:00").getTime(); // 7:00 PM
+
+        setInterval(function(){
+            const now = new Date().getTime();
+            const distance = birthday - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+        }, 1000);
     </script>
-    <script>
-
-const birthday = new Date("May 15, 2026 17:00:00").getTime();
-
-setInterval(function(){
-
-  const now = new Date().getTime();
-  const distance = birthday - now;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("days").innerHTML = days;
-  document.getElementById("hours").innerHTML = hours;
-  document.getElementById("minutes").innerHTML = minutes;
-  document.getElementById("seconds").innerHTML = seconds;
-
-},1000);
-
-</script>
 </body>
 </html>
