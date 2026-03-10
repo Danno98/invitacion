@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>50 Años - Invitación Especial</title>
+    <link rel="stylesheet" href="css.css">
     <style>
         * {
             margin: 0;
@@ -243,6 +244,26 @@
 
         <!-- PANTALLA 4: Datos del Evento y Botón -->
         <section class="slide" id="evento">
+            <h2>🎉 Cuenta regresiva para la fiesta 🎉</h2>
+
+<div id="countdown">
+  <div class="time">
+    <span id="days"></span>
+    <p>Días</p>
+  </div>
+  <div class="time">
+    <span id="hours"></span>
+    <p>Horas</p>
+  </div>
+  <div class="time">
+    <span id="minutes"></span>
+    <p>Minutos</p>
+  </div>
+  <div class="time">
+    <span id="seconds"></span>
+    <p>Segundos</p>
+  </div>
+</div>
             <div class="event-details">
                 <h2>¡Te esperamos!</h2>
                 <div class="detail-item"><span>📅</span> 25 de Diciembre, 2025</div> <!-- CAMBIA FECHA -->
@@ -415,5 +436,27 @@
         };
 
     </script>
+    <script>
+
+const birthday = new Date("May 15, 2026 17:00:00").getTime();
+
+setInterval(function(){
+
+  const now = new Date().getTime();
+  const distance = birthday - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+
+},1000);
+
+</script>
 </body>
 </html>
