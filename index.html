@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>50 Años - Invitación Especial</title>
+    <title>50 Años - Edición Clásica</title>
     <style>
         * {
             margin: 0;
@@ -94,7 +94,48 @@
             letter-spacing: 2px;
         }
 
-        /* Pantalla 3: Revelación */
+        /* NUEVA PANTALLA 3: Chiste "Edición Clásica" */
+        .classic-edition {
+            text-align: center;
+            max-width: 90%;
+        }
+        .classic-edition .main-phrase {
+            font-size: 3rem;
+            font-weight: bold;
+            color: gold;
+            text-shadow: 0 0 20px rgba(255,215,0,0.5);
+            margin-bottom: 20px;
+            animation: glow 3s ease-in-out infinite;
+        }
+        .classic-edition .sub-phrase {
+            font-size: 2rem;
+            color: white;
+            margin: 30px 0;
+            line-height: 1.4;
+        }
+        .classic-edition .invitation {
+            font-size: 2.2rem;
+            color: #ffd700;
+            border: 2px solid gold;
+            padding: 20px;
+            border-radius: 60px;
+            background: rgba(255,215,0,0.1);
+            backdrop-filter: blur(5px);
+            animation: pulse 2s infinite;
+            margin-top: 30px;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px gold; }
+            50% { text-shadow: 0 0 50px gold, 0 0 30px #ffd700; }
+            100% { text-shadow: 0 0 20px gold; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Pantalla 4: Revelación */
         .revelation-text {
             font-size: 2.5rem;
             line-height: 1.4;
@@ -112,13 +153,8 @@
             text-shadow: 0 0 20px rgba(255,215,0,0.5);
             animation: pulse 2s infinite;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
 
-        /* Pantalla 4: Datos y botón */
+        /* Pantalla 5: Datos y botón */
         .event-details {
             background: rgba(255,215,0,0.1);
             backdrop-filter: blur(5px);
@@ -136,7 +172,7 @@
             margin-bottom: 15px;
         }
         
-        /* Estilos para el contador */
+        /* Contador */
         #countdown {
             display: flex;
             justify-content: center;
@@ -231,6 +267,18 @@
             font-size: 3rem;
             margin-bottom: 10px;
         }
+
+        /* Animación para el vino */
+        .wine-glass {
+            font-size: 4rem;
+            animation: clink 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        @keyframes clink {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+        }
     </style>
 </head>
 <body>
@@ -258,7 +306,30 @@
             <p class="photo-caption">⬅️ Desliza para ver más ➡️</p>
         </section>
 
-        <!-- PANTALLA 3: Revelación del Nombre -->
+        <!-- NUEVA PANTALLA 3: Chiste "Edición Clásica" -->
+        <section class="slide" id="classic">
+            <div class="classic-edition">
+                <div class="wine-glass">🍷</div>
+                <div class="main-phrase">
+                    ¡EDICIÓN CLÁSICA!
+                </div>
+                <div class="sub-phrase">
+                    Porque a los 50<br>
+                    <span style="color: gold;">no nos volvemos viejos,</span><br>
+                    <span style="font-size: 2.5rem; color: white;">nos volvemos</span><br>
+                    <span style="font-size: 3.5rem; color: gold; font-weight: bold;">EDICIÓN CLÁSICA</span>
+                </div>
+                <div class="invitation">
+                    🎉 Y como todo clásico...<br>
+                    ¡Se merece una gran fiesta! 🎉
+                </div>
+                <div style="margin-top: 40px; font-size: 2rem;">
+                    ⬇️ Descubre los detalles ⬇️
+                </div>
+            </div>
+        </section>
+
+        <!-- PANTALLA 4: Revelación del Nombre -->
         <section class="slide" id="revelation">
             <div class="revelation-text">
                 <span class="small">Hoy celebramos 50 años de vida de...</span>
@@ -267,12 +338,11 @@
             </div>
         </section>
 
-        <!-- PANTALLA 4: Datos del Evento y Botón -->
+        <!-- PANTALLA 5: Datos del Evento y Botón -->
         <section class="slide" id="evento">
             <div class="event-details">
                 <h2>¡Te esperamos!</h2>
                 
-                <!-- CONTADOR REGRESIVO (AHORA DENTRO DEL CUADRO) -->
                 <h3 style="color: gold; font-size: 1.3rem; margin-bottom: 10px;">⏳ Faltan:</h3>
                 <div id="countdown">
                     <div class="time">
@@ -293,16 +363,14 @@
                     </div>
                 </div>
 
-                <!-- DATOS DEL EVENTO -->
                 <div class="detail-item"><span>📅</span> <span id="fechaEvento">15 de Mayo, 2026</span></div>
                 <div class="detail-item"><span>⏰</span> <span id="horaEvento">7:00 PM</span></div>
                 <div class="detail-item"><span>📍</span> <span id="lugarEvento">Salón Fiesta, Calle De Las Sirenas 123</span></div>
                 
-                <!-- BOTÓN WHATSAPP -->
                 <a href="#" id="whatsappLink" class="whatsapp-btn" target="_blank">
                     <span>📲</span> Confirmar Asistencia
                 </a>
-                <p style="margin-top: 20px; font-size: 0.9rem; color: #ccc;">¡Te esperamos para celebrar!</p>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #ccc;">¡Ven a celebrar este clásico!</p>
             </div>
         </section>
     </div>
@@ -424,7 +492,7 @@
             ctx.clearRect(0, 0, width, height);
         }
 
-        // Detectar pantalla activa
+        // Detectar pantalla activa (AHORA CON 5 PANTALLAS)
         const slides = document.querySelectorAll('.slide');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -446,7 +514,7 @@
         };
 
         // --- CONTADOR REGRESIVO ---
-        const birthday = new Date("May 15, 2026 19:00:00").getTime(); // 7:00 PM
+        const birthday = new Date("May 15, 2026 19:00:00").getTime();
 
         setInterval(function(){
             const now = new Date().getTime();
